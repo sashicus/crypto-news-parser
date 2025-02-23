@@ -27,9 +27,9 @@ jobs:
 
       - name: Проверка переменных окружения
         run: |
-          echo "HUGGING_FACE_API_KEY: $HUGGING_FACE_API_KEY"
-          echo "BOT_TOKEN: $BOT_TOKEN"
-          echo "CHAT_ID: $CHAT_ID"
+          echo "HUGGING_FACE_API_KEY: ${{ secrets.HUGGING_FACE_API_KEY }}"
+          echo "BOT_TOKEN: ${{ secrets.BOT_TOKEN }}"
+          echo "CHAT_ID: ${{ secrets.CHAT_ID }}"
 
       - name: Запуск парсера
         env:
