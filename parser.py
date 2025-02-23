@@ -9,9 +9,6 @@ from dotenv import load_dotenv
 # Загружаем переменные окружения из .env файла
 load_dotenv()
 
-# URLs
-CRYPTO_NEWS_URL = "https://crypto.news/"
-
 # Получаем значения API-ключа и токенов из переменных окружения
 HUGGING_FACE_API_KEY = os.getenv("HUGGING_FACE_API_KEY")
 BOT_TOKEN = os.getenv("BOT_TOKEN")
@@ -21,6 +18,9 @@ CHAT_ID = os.getenv("CHAT_ID")
 if not HUGGING_FACE_API_KEY or not BOT_TOKEN or not CHAT_ID:
     print("❌ Отсутствуют необходимые переменные окружения.")
     exit()
+
+# URLs
+CRYPTO_NEWS_URL = "https://crypto.news/"
 
 # Получаем последнюю новость
 def get_latest_news():
