@@ -32,12 +32,12 @@ jobs:
           echo "CHAT_ID: ${{ secrets.CHAT_ID }}"
 
       - name: Запуск парсера
-        env:
-          HUGGING_FACE_API_KEY: ${{ secrets.HUGGING_FACE_API_KEY }}
-          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
-          CHAT_ID: ${{ secrets.CHAT_ID }}
-        run: python parser.py
-
+        run: |
+          echo "HUGGING_FACE_API_KEY=${{ secrets.HUGGING_FACE_API_KEY }}" >> $GITHUB_ENV
+          echo "BOT_TOKEN=${{ secrets.BOT_TOKEN }}" >> $GITHUB_ENV
+          echo "CHAT_ID=${{ secrets.CHAT_ID }}" >> $GITHUB_ENV
+          python parser.py
+          
       - name: Логи
         run: |
           echo "Парсер запущен"
