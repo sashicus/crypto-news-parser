@@ -9,13 +9,13 @@ from dotenv import load_dotenv
 # Загружаем переменные окружения из .env файла
 load_dotenv()
 
-# Получаем значения API-ключа и токенов из переменных окружения
-HUGGING_FACE_API_KEY = os.getenv("HUGGING_FACE_API_KEY")
+# Получаем значения переменных окружения
+HF_API_KEY = os.getenv("HF_API_KEY")
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 CHAT_ID = os.getenv("CHAT_ID")
 
 # Проверка на наличие переменных окружения
-if not HUGGING_FACE_API_KEY or not BOT_TOKEN or not CHAT_ID:
+if not HF_API_KEY or not BOT_TOKEN or not CHAT_ID:
     print("❌ Отсутствуют необходимые переменные окружения.")
     exit()
 
@@ -94,7 +94,7 @@ def translate_title(title):
 def analyze_text(text):
     prompt = f"Please summarize the following news article in a clear and concise manner, highlighting the main points and keeping the context intact: {text}"
     payload = {"inputs": prompt, "parameters": {"max_length": 1000, "temperature": 0.5}}
-    response = requests.post("https://api-inference.huggingface.co/models/facebook/bart-large-cnn", headers={"Authorization": f"Bearer {HUGGING_FACE_API_KEY}"}, json=payload)
+    response = requests.post("https://api-inference.huggingface.co/models/facebook/bart-large-cnn", headers={"Authorization": f"Bearer {HF_API_KEY}"}, json=payload)
 
     if response.status_code == 200 and response.json():
         summary = response.json()[0].get("summary_text", "⚠️ Ошибка анализа")
