@@ -31,7 +31,9 @@ jobs:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
         run: python parser.py
-run: |
-  echo "HUGGING_FACE_API_KEY: $HUGGING_FACE_API_KEY"
-  echo "BOT_TOKEN: $BOT_TOKEN"
-  echo "CHAT_ID: $CHAT_ID"
+
+      - name: Логи
+        run: |
+        echo "HUGGING_FACE_API_KEY: $HUGGING_FACE_API_KEY"
+        echo "BOT_TOKEN: $BOT_TOKEN"ы
+        echo "CHAT_ID: $CHAT_ID" 
