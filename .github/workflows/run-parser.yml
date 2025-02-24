@@ -3,7 +3,7 @@ name: Run Crypto Parser
 on:
   push:
     branches:
-      - main  # Запуск при пуше в main
+      - main
   schedule:
     - cron: '0 * * * *'  # Запуск каждый час
 
@@ -25,19 +25,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Проверка переменных окружения
+      - name: Проверка значений переменных
         run: |
-          echo "HF_API_KEY=${{ secrets.HUGGING_FACE_API_KEY }}" >> $GITHUB_ENV
-          echo "BOT_TOKEN=${{ secrets.BOT_TOKEN }}" >> $GITHUB_ENV
-          echo "CHAT_ID=${{ secrets.CHAT_ID }}" >> $GITHUB_ENV
-          echo "🔍 Переменные окружения загружены"
+          echo "HF_API_KEY=${{ secrets.HF_API_KEY }}"
+          echo "BOT_TOKEN=${{ secrets.BOT_TOKEN }}"
+          echo "CHAT_ID=${{ secrets.CHAT_ID }}"
 
       - name: Запуск парсера
         env:
-          HF_API_KEY: ${{ secrets.HUGGING_FACE_API_KEY }}
+          HF_API_KEY: ${{ secrets.HF_API_KEY }}
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
-        run: python parser.py
-
-      - name: Логи
-        run: echo "✅ Парсер завершил работу"
+        run: |
+          python parser.py
